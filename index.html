@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Nasherai</title>
+    <!-- Styles -->
     <!-- Bower -->
     <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
 
@@ -10,8 +11,12 @@
     <!-- Custom -->
     <link rel="stylesheet" href="styles/application.css">
     <link rel="stylesheet" href="styles/helpers.css">
+
+    <!-- JS -->
+    <!-- Bower -->
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
   </head>
-  <body>
+  <body ng-app="nasherai">
     <div class="container-fluid">
       <div class="row">
         <div id="code" class="col-xs-6 full-height">
@@ -22,5 +27,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Custom JS -->
+    <script type="text/javascript" src="scripts/app.js"></script>
   </body>
 </html>
