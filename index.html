@@ -19,8 +19,8 @@
   <body ng-app="nasherai" ng-controller="ApplicationCtrl">
     <div class="container-fluid">
       <div class="row">
-        <div id="code" class="col-xs-6 full-height" ng-model="watchables.code" contenteditable></div>
-        <div id="preview" class="col-xs-6 full-height" ng-model="watchables.preview" contenteditable></div>
+        <div id="code" class="col-xs-6 full-height" ng-model="watchables.code" ng-model-options="{ debounce: 500 }" contenteditable></div>
+        <div id="preview" class="col-xs-6 full-height" ng-model="watchables.preview"></div>
       </div>
     </div>
 
