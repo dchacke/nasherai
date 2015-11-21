@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "build": "electron-packager . Nasherai --platform=darwin --arch=x64 --version=0.35.1"
   },
   "author": "Dennis Charles Hackethal",
   "license": "MIT",
