@@ -10,3 +10,7 @@
 
 /*#preview {
 }*/
+
+[contenteditable] {
+  outline: none;
+}
