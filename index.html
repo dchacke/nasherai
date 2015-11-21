@@ -22,9 +22,15 @@
   <body ng-app="nasherai" ng-controller="ApplicationCtrl">
     <div class="container-fluid">
       <div class="row">
-        <div id="code" class="col-xs-6 full-height" ng-model="watchables.code" ng-model-options="{ debounce: 500 }" contenteditable></div>
+        <div id="code" class="col-xs-6 full-height">
+          <textarea class="full-height" ng-model="watchables.code" ng-model-options="{ debounce: 500 }" autofocus="true"></textarea>
+        </div>
         <div id="preview" class="col-xs-6 full-height" ng-model="watchables.preview"></div>
       </div>
+    </div>
+
+    <div id="line-error" class="full-height">
+      <red-circle ng-show="error"></red-circle>
     </div>
 
     <div class="error">
@@ -37,5 +43,6 @@
     <script type="text/javascript" src="scripts/app.js"></script>
     <script type="text/javascript" src="scripts/controllers/applicationCtrl.js"></script>
     <script type="text/javascript" src="scripts/directives/contenteditable.js"></script>
+    <script type="text/javascript" src="scripts/directives/redCircle.js"></script>
   </body>
 </html>

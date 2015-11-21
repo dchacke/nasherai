@@ -10,8 +10,6 @@ angular.module('nasherai')
     $scope.$watch(function () {
       return $scope.watchables.code;
     }, function (code) {
-      code = String(code).replace(/<[^>]+>|&nbsp;/gm, '');
-
       try {
         esprima.parse(code);
         delete $scope.error;

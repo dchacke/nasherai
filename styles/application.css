@@ -6,6 +6,19 @@
 #code {
   border-right: 1px dashed #d9d9d9;
   border-right-width: 2px;
+  line-height: 20px;
+  padding-left: 30px;
+  padding-right: 0px;
+}
+
+#code textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+}
+
+#code textarea:focus {
+  outline: none;
 }
 
 /*#preview {
@@ -27,4 +40,22 @@
 
 .error span {
   font-size: 11px;
+}
+
+#line-error {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 30px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+#red-circle {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(178, 0, 4);
+  margin: 5px auto;
+  border-radius: 5px;
+  border: 1px solid rgb(124, 30, 44);
 }
