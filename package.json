@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . Nasherai --platform=darwin --arch=x64 --version=0.35.1"
+    "build": "electron-packager . Nasherai --platform=darwin --arch=x64 --version=0.35.1 && cp icon.icns Nasherai-darwin-x64/Nasherai.app/Contents/Resources/atom.icns"
   },
   "author": "Dennis Charles Hackethal",
   "license": "MIT",
