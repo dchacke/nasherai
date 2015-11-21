@@ -15,6 +15,9 @@
     <!-- JS -->
     <!-- Bower -->
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+
+    <!-- NPM -->
+    <script type="text/javascript" src="node_modules/esprima/esprima.js"></script>
   </head>
   <body ng-app="nasherai" ng-controller="ApplicationCtrl">
     <div class="container-fluid">
@@ -22,6 +25,12 @@
         <div id="code" class="col-xs-6 full-height" ng-model="watchables.code" ng-model-options="{ debounce: 500 }" contenteditable></div>
         <div id="preview" class="col-xs-6 full-height" ng-model="watchables.preview"></div>
       </div>
+    </div>
+
+    <div class="error">
+      <span ng-show="error">
+        Line {{ error.lineNumber }}, col {{ error.index }}: {{ error.description }}
+      </span>
     </div>
 
     <!-- Custom JS -->
