@@ -17,7 +17,7 @@
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 
     <!-- NPM -->
-    <script type="text/javascript" src="node_modules/esprima/esprima.js"></script>
+    <script type="text/javascript" src="node_modules/acorn/dist/acorn.js" charset="UTF-8"></script>
   </head>
   <body ng-app="nasherai" ng-controller="ApplicationCtrl">
     <div class="container-fluid">
@@ -35,7 +35,7 @@
 
     <div class="error">
       <span ng-show="error">
-        Line {{ error.lineNumber }}: {{ error.description }}
+        Error on line {{ error.loc.line }}, column {{ error.loc.column }}
       </span>
     </div>
 

@@ -9,7 +9,7 @@ angular.module('nasherai')
           return scope.error;
         }, function (error) {
           if (error) {
-            var marginTop = (error.lineNumber - 1) * 20 + 6;
+            var marginTop = (error.loc.line - 1) * 20 + 6;
             element.css('margin-top', marginTop + 'px');
           }
         }, true);
