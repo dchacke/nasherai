@@ -54,8 +54,8 @@
 #red-circle {
   width: 10px;
   height: 10px;
-  background-color: rgb(178, 0, 4);
+  background-color: #b20004;
   margin: 5px auto;
   border-radius: 5px;
-  border: 1px solid rgb(124, 30, 44);
+  border: 1px solid #7C1E2C;
 }
