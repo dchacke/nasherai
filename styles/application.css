@@ -65,3 +65,7 @@
   padding: 0;
   margin: 0;
 }
+
+.preview-list-item {
+  height: 20px; /* So that even empty lines correspond to empty lines on the left */
+}
