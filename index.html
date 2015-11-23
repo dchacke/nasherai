@@ -23,9 +23,21 @@
     <div class="container-fluid">
       <div class="row">
         <div id="code" class="col-xs-6 full-height">
-          <textarea class="full-height" ng-model="watchables.code" ng-model-options="{ debounce: 500 }" autofocus="true"></textarea>
+          <textarea class="full-height" ng-model="watchables.code" autofocus="true"></textarea>
         </div>
-        <div id="preview" class="col-xs-6 full-height" ng-model="watchables.preview"></div>
+        <div id="preview" class="col-xs-6 full-height">
+          <ul id="preview-list">
+            <li ng-repeat="i in lineRange track by $index">
+              <span ng-repeat="statement in watchables.preview[$index + 1]">
+                {{ statement.name }} = {{ statement.value || 'undefined' }}{{ $last ? '' : ', ' }}
+              </span>
+            </li>
+          </ul>
+
+          <!-- <pre>{{ watchables.preview | json }}</pre>
+          <hr>
+          <pre>{{ parsed | json }}</pre> -->
+        </div>
       </div>
     </div>
 
