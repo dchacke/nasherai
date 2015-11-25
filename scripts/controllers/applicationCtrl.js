@@ -46,6 +46,8 @@ angular.module('nasherai')
       }
 
       $scope.lines.push(newLine);
+
+      $scope.lineRange = new Array($scope.lines.length);
     });
 
     $scope.$watch(function () {
