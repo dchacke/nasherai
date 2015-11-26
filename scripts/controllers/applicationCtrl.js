@@ -7,19 +7,10 @@ var jshint = require('jshint').JSHINT;
 angular.module('nasherai')
   .controller('ApplicationCtrl', function ($scope) {
     $scope.watchables = {
-      code: '',
-      preview: ''
+      code: ''
     };
 
-    $scope.line = 0;
-    $scope.lines = [];
-
-    $scope.variables = {};
-
     $scope.$on('new:line', function (event, lineNumber, variables) {
-      // $scope.lines[lineNumber] = {
-      //   variables: angular.copy(variables)
-      // };
       var newLine = {
         number: lineNumber,
         variables: angular.copy(variables)
@@ -57,6 +48,8 @@ angular.module('nasherai')
       $scope.line = 0;
       $scope.lines = [];
       $scope.variables = {};
+      delete $scope.errors;
+      delete $scope.firstError;
 
       if (code) {
         jshint(code);
@@ -85,8 +78,6 @@ angular.module('nasherai')
 
           code = lines.join('\n');
 
-          // code = code.replace(/\n/g, '$scope.line += 1;');
-
           with ($scope.variables) {
             eval(code);
           }
@@ -95,10 +86,6 @@ angular.module('nasherai')
         } catch (e) {
           $scope.error = e;
         }
-      } else {
-        $scope.variables = {};
-        $scope.lines = [];
-        delete $scope.errors;
       }
     }, true);
   });
