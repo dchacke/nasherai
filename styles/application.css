@@ -51,13 +51,14 @@
   top: 0;
 }
 
-#red-circle {
+.red-circle {
   width: 10px;
   height: 10px;
   background-color: #b20004;
-  margin: 5px auto;
   border-radius: 5px;
   border: 1px solid #7C1E2C;
+  position: absolute;
+  left: 10px;
 }
 
 #preview-list {

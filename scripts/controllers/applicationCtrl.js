@@ -2,6 +2,7 @@ var acorn = require('acorn');
 var walk = require('./node_modules/acorn/dist/walk.js');
 var walkall = require('./node_modules/walkall/walkall.js');
 var objectDiff = require('objectdiff');
+var jshint = require('jshint').JSHINT;
 
 angular.module('nasherai')
   .controller('ApplicationCtrl', function ($scope) {
@@ -58,6 +59,15 @@ angular.module('nasherai')
       $scope.variables = {};
 
       if (code) {
+        jshint(code);
+        $scope.errors = jshint.errors;
+
+        if ($scope.errors.length) {
+          $scope.firstError = $scope.errors[0];
+        } else {
+          delete $scope.firstError;
+        }
+
         try {
           var parsed = acorn.parse(code, { locations: true, ranges: true });
 
@@ -88,7 +98,7 @@ angular.module('nasherai')
       } else {
         $scope.variables = {};
         $scope.lines = [];
-        delete $scope.error;
+        delete $scope.errors;
       }
     }, true);
   });

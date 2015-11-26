@@ -42,12 +42,12 @@
     </div>
 
     <div id="line-error" class="full-height">
-      <red-circle ng-show="error"></red-circle>
+      <red-circle ng-repeat="error in errors" error="error" ng-if="error"></red-circle>
     </div>
 
     <div class="error">
-      <span ng-show="error">
-        Error on line {{ error.loc.line }}, column {{ error.loc.column }}
+      <span ng-show="firstError">
+        Line {{ firstError.line }}, column {{ firstError.character }}: {{ firstError.reason }}
       </span>
     </div>
 
