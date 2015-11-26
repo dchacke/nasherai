@@ -27,16 +27,12 @@
         </div>
         <div id="preview" class="col-xs-6 full-height">
           <ul id="preview-list">
-            <li ng-repeat="i in lineRange track by $index" class="preview-list-item">
+            <li class="preview-list-item" ng-repeat="i in lineRange track by $index">
               <span ng-repeat="(variable, value) in lines[$index].changes" ng-if="value !== undefined">
                 {{ variable }} = {{ value }}
               </span>
             </li>
           </ul>
-
-          <hr>
-          Lines:
-          <pre>{{ lines | json }}</pre>
         </div>
       </div>
     </div>

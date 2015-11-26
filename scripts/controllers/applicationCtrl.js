@@ -12,17 +12,20 @@ angular.module('nasherai')
 
     $scope.$on('new:line', function (event, lineNumber, variables) {
       var newLine = {
-        number: lineNumber,
         variables: angular.copy(variables)
       };
 
+      var previousLinesIndices = Object.keys($scope.lines);
+
       // Determine diff to previous line
-      if ($scope.lines.length === 0) {
+      if (previousLinesIndices.length === 0) {
         // If no lines, everything is new
         newLine.changes = angular.copy(variables);
       } else {
+        var previousLine = $scope.lines[previousLinesIndices[previousLinesIndices.length - 1]];
+
         // If there is at least one previous line, diff the new one with it
-        var diff = objectDiff.diff($scope.lines[$scope.lines.length - 1].variables, newLine.variables);
+        var diff = objectDiff.diff(previousLine.variables, newLine.variables);
 
         if (diff.changed === 'object change') {
           newLine.changes = {};
@@ -37,16 +40,16 @@ angular.module('nasherai')
         }
       }
 
-      $scope.lines.push(newLine);
+      $scope.lines[lineNumber] = newLine;
 
-      $scope.lineRange = new Array($scope.lines.length);
+      $scope.lineRange = new Array(lineNumber + 1);
     });
 
     $scope.$watch(function () {
       return $scope.watchables.code;
     }, function (code) {
       $scope.line = 0;
-      $scope.lines = [];
+      $scope.lines = {};
       $scope.variables = {};
       delete $scope.errors;
       delete $scope.firstError;
@@ -77,6 +80,7 @@ angular.module('nasherai')
           }
 
           code = lines.join('\n');
+          // console.log(code);
 
           with ($scope.variables) {
             eval(code);
