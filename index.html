@@ -29,7 +29,7 @@
           <ul id="preview-list">
             <li class="preview-list-item" ng-repeat="i in lineRange track by $index">
               <span ng-repeat="(variable, value) in lines[$index].changes" ng-if="value !== undefined">
-                {{ variable }} = {{ value }}<span ng-show="!$last">, </span>
+                {{ variable }} = {{ value | json }}<span ng-show="!$last">, </span>
               </span>
             </li>
           </ul>
