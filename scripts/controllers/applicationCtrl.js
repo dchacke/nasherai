@@ -12,6 +12,17 @@ angular.module('nasherai')
 
     var lastExecution;
 
+    var startOver = function () {
+      $scope.lines = {};
+      $scope.variables = {};
+
+      delete $scope.errors;
+      delete $scope.firstError;
+      delete $scope.runtimeError;
+
+      lastExecution = undefined;
+    };
+
     $scope.$on('new:line', function (event, lineNumber, variables) {
       var currentExecution = {
         variables: angular.copy(variables)
@@ -73,13 +84,6 @@ angular.module('nasherai')
     $scope.$watch(function () {
       return $scope.watchables.code;
     }, function (code) {
-      $scope.lines = {};
-      $scope.variables = {};
-      delete $scope.errors;
-      delete $scope.firstError;
-      delete $scope.runtimeError;
-      lastExecution = undefined;
-
       if (code) {
         jshint(code);
         $scope.errors = jshint.errors;
@@ -87,7 +91,7 @@ angular.module('nasherai')
         if ($scope.errors.length) {
           $scope.firstError = $scope.errors[0];
         } else {
-          delete $scope.firstError;
+          startOver();
 
           try {
             var parsed = acorn.parse(code, { locations: true, ranges: true });
@@ -109,12 +113,12 @@ angular.module('nasherai')
             with ($scope.variables) {
               eval(code);
             }
-
-            delete $scope.error;
           } catch (e) {
             $scope.runtimeError = e;
           }
         }
+      } else {
+        startOver();
       }
     }, true);
   });

@@ -22,7 +22,7 @@
         <div id="code" class="col-xs-6 full-height">
           <textarea class="full-height" ng-model="watchables.code" autofocus="true"></textarea>
         </div>
-        <div id="preview" class="col-xs-6 full-height">
+        <div id="preview" class="col-xs-6 full-height" ng-class="{ 'erroneous': firstError || runtimeError }">
           <ul id="preview-list">
             <li class="preview-list-item" ng-repeat="i in lineRange track by $index">
               <span ng-repeat="execution in lines[$index]" ng-if="execution.changes">
