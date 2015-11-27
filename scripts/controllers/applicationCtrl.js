@@ -73,11 +73,11 @@ angular.module('nasherai')
     $scope.$watch(function () {
       return $scope.watchables.code;
     }, function (code) {
-      $scope.line = 0;
       $scope.lines = {};
       $scope.variables = {};
       delete $scope.errors;
       delete $scope.firstError;
+      delete $scope.runtimeError;
       lastExecution = undefined;
 
       if (code) {
@@ -88,33 +88,32 @@ angular.module('nasherai')
           $scope.firstError = $scope.errors[0];
         } else {
           delete $scope.firstError;
-        }
 
-        try {
-          var parsed = acorn.parse(code, { locations: true, ranges: true });
+          try {
+            var parsed = acorn.parse(code, { locations: true, ranges: true });
 
-          walk.simple(parsed, walkall.makeVisitors(function (node) {
-            if (node.type === 'VariableDeclarator') {
-              $scope.variables[node.id.name] = undefined;
+            walk.simple(parsed, walkall.makeVisitors(function (node) {
+              if (node.type === 'VariableDeclarator') {
+                $scope.variables[node.id.name] = undefined;
+              }
+            }), walkall.traversers);
+
+            var lines = code.split('\n');
+
+            for (var i = 0; i < lines.length; i++) {
+              lines[i] += ('\n$scope.$broadcast("new:line", ' + i + ', $scope.variables);\n');
             }
-          }), walkall.traversers);
 
-          var lines = code.split('\n');
+            code = lines.join('\n');
 
-          for (var i = 0; i < lines.length; i++) {
-            lines[i] += ('\n$scope.$broadcast("new:line", ' + i + ', $scope.variables);\n');
+            with ($scope.variables) {
+              eval(code);
+            }
+
+            delete $scope.error;
+          } catch (e) {
+            $scope.runtimeError = e;
           }
-
-          code = lines.join('\n');
-          // console.log(code);
-
-          with ($scope.variables) {
-            eval(code);
-          }
-
-          delete $scope.error;
-        } catch (e) {
-          $scope.error = e;
         }
       }
     }, true);

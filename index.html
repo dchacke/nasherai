@@ -43,7 +43,10 @@
 
     <div class="error">
       <span ng-show="firstError">
-        Line {{ firstError.line }}, column {{ firstError.character }}: {{ firstError.reason }}
+        Syntax error: Line {{ firstError.line }}, column {{ firstError.character }}: {{ firstError.reason }}
+      </span>
+      <span ng-show="runtimeError">
+        {{ runtimeError.name }}: {{ runtimeError.message }}
       </span>
     </div>
 
