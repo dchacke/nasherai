@@ -21,13 +21,6 @@
   outline: none;
 }
 
-/*#preview {
-}*/
-
-[contenteditable] {
-  outline: none;
-}
-
 .error {
   position: fixed;
   bottom: 0;
